@@ -1,0 +1,84 @@
+{
+  "purpose": "Documentation only; not a deployable inventory",
+  "contains_real_environment_data": false,
+  "example_domain": {
+    "value": "corp.example.test",
+    "status": "PROPOSED TARGET STATE",
+    "note": "Synthetic namespace; real namespace is an OPEN DECISION"
+  },
+  "confirmed_vlan_roles_synthetic_subnets": [
+    {
+      "vlan_id": 10,
+      "role": "MGMT",
+      "example_subnet": "10.250.10.0/24",
+      "status": "CONFIRMED CURRENT STATE",
+      "address_status": "SYNTHETIC EXAMPLE ONLY"
+    },
+    {
+      "vlan_id": 20,
+      "role": "SRV/Proxmox",
+      "example_subnet": "10.250.20.0/24",
+      "status": "CONFIRMED CURRENT STATE",
+      "address_status": "SYNTHETIC EXAMPLE ONLY"
+    },
+    {
+      "vlan_id": 30,
+      "role": "LAB",
+      "example_subnet": "10.250.30.0/24",
+      "status": "CONFIRMED CURRENT STATE",
+      "address_status": "SYNTHETIC EXAMPLE ONLY"
+    },
+    {
+      "vlan_id": 40,
+      "role": "Wi-Fi",
+      "example_subnet": "10.250.40.0/24",
+      "status": "CONFIRMED CURRENT STATE",
+      "address_status": "SYNTHETIC EXAMPLE ONLY"
+    },
+    {
+      "vlan_id": 50,
+      "role": "DMZ/Game",
+      "example_subnet": "10.250.50.0/24",
+      "status": "CONFIRMED CURRENT STATE",
+      "address_status": "SYNTHETIC EXAMPLE ONLY"
+    }
+  ],
+  "legacy_configuration": {
+    "vlan_id": 40,
+    "role": "Abandoned home-automation experiment",
+    "example_subnet": "10.250.140.0/24",
+    "status": "CONFIRMED CURRENT STATE",
+    "address_status": "SYNTHETIC EXAMPLE ONLY",
+    "action": "Preserve; cleanup requires later review"
+  },
+  "candidate_segments": [
+    {
+      "candidate_vlan_id": 60,
+      "candidate_role": "Enterprise Servers",
+      "example_subnet": "10.250.60.0/24",
+      "status": "PROPOSED TARGET STATE",
+      "approval": "Pending architecture review"
+    },
+    {
+      "candidate_vlan_id": 70,
+      "candidate_role": "Windows Clients",
+      "example_subnet": "10.250.70.0/24",
+      "status": "PROPOSED TARGET STATE",
+      "approval": "Pending architecture review"
+    },
+    {
+      "candidate_vlan_id": 80,
+      "candidate_role": "Linux",
+      "example_subnet": "10.250.80.0/24",
+      "status": "PROPOSED TARGET STATE",
+      "approval": "Pending architecture review"
+    },
+    {
+      "candidate_vlan_id": 90,
+      "candidate_role": "Monitoring/Test",
+      "example_subnet": "10.250.90.0/24",
+      "status": "PROPOSED TARGET STATE",
+      "approval": "Pending architecture review"
+    }
+  ]
+}
