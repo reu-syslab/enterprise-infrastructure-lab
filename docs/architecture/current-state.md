@@ -39,4 +39,4 @@ See [VLAN/IP plan](../network/vlan-ip-plan.md) for synthetic examples. Confirmed
 
 ## OPEN DECISION / discovery gaps
 
-Privately confirm the exact RB5009 L2 configuration; BIND9/Unbound authority and query paths; complete DNS consumers; legacy bridge/template dependencies; management/recovery paths; resource capacity; and WAN/legacy cleanup dependencies. Publish sanitized conclusions only. The current-state audit does not establish an implemented AD environment, enterprise VLAN60–90 deployment, DNS migration or production automation.
+The RB5009 L2 trunk path required by the Enterprise Lab has now been verified live. VLAN60 ENT-SERVERS and VLAN70 ENT-CLIENTS are implemented and validated end-to-end through Proxmox, MikroTik and FortiGate. Remaining HomeLab discovery items include BIND9/Unbound authority and query paths, complete DNS consumers, legacy bridge/template dependencies, management/recovery details, resource capacity and WAN/legacy cleanup dependencies. No Active Directory environment, enterprise DNS migration or production automation has been implemented yet.
