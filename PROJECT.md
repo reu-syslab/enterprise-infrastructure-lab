@@ -56,14 +56,14 @@ Live read-only CLI discovery was performed on Proxmox and FortiGate. No infrastr
 
 ## Current phase
 
-Create and maintain the public documentation skeleton; complete the Target Architecture and collect its review decisions. The skeleton exists; the target architecture is a review draft. No DC01 build, VLAN60 creation, provider initialization, playbook, script or deployment workflow is authorized in this phase.
+The documentation skeleton and initial network foundation are complete. VLAN60 ENT-SERVERS and VLAN70 ENT-CLIENTS are implemented and validated end-to-end. The next implementation slice is DC01 and the first Active Directory forest. Infrastructure automation remains deferred until the corresponding components have been built, tested and troubleshot manually.
 
 ## Next actions
 
 | Order | Action | Completion evidence |
 | --- | --- | --- |
 | 1 | Resolve baseline gaps privately: resolver flows, consumers, bridge/template dependencies, management paths | Sanitized findings in current-state document; no raw exports |
-| 2 | Review proposed enterprise segmentation and VLAN60–90 candidates | VLAN/IP plan and ADR with explicit accepted or rejected choices |
+| 2 | Record the accepted VLAN60 ENT-SERVERS and VLAN70 ENT-CLIENTS design; review additional segmentation only when required by later slices | VLAN/IP plan and architecture documentation reflect implemented and validated state |
 | 3 | Design AD namespace, DC topology, DNS authority, forwarding, DHCP DNS options and migration | DNS flow document and DNS ADR; failure/rollback criteria |
 | 4 | Define access by source, destination, purpose and protocol | Reviewed firewall matrix; explicit denied paths and verification cases |
 | 5 | Define Windows/Linux pilot, GPO boundaries, SMB/NTFS model, identity and monitoring | Target service/identity decisions, capacity assumptions and acceptance criteria |
@@ -77,7 +77,7 @@ Track detailed work in [backlog.md](docs/project/backlog.md). Roles below identi
 | ID | ACCEPTED CONSTRAINT | Record |
 | --- | --- | --- |
 | A01 | Public reusable artifacts and synthetic examples; all real environment data kept externally | [ADR 0001](docs/adr/0001-public-private-boundary.md) |
-| A02 | Architecture review precedes implementation; no current DC01, VLAN60 or automation work | [ADR 0002](docs/adr/0002-architecture-before-implementation.md) |
+| A02 | Architecture review precedes each implementation slice; VLAN60/70 are implemented and validated, DC01 is the next manual slice, and automation remains deferred until manual understanding exists | [ADR 0002](docs/adr/0002-architecture-before-implementation.md) |
 | A03 | New AD environment must be isolated from WAN-exposed DMZ/test/game services | Target-state security requirements |
 | A04 | Preserve old bridges, templates and alternate VLAN40 configuration until separately reviewed | Current-state debt register |
 | A05 | Plan AD DNS before changing BIND9/Unbound or existing clients' DNS | DNS design draft |

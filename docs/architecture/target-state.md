@@ -12,8 +12,8 @@ Preserve current services and administration while designing an isolated enterpr
 
 | Candidate | Intended purpose | Status |
 | --- | --- | --- |
-| VLAN60 | Enterprise Servers | PROPOSED TARGET STATE; ID and scope require review |
-| VLAN70 | Windows Clients | PROPOSED TARGET STATE; ID and scope require review |
+| VLAN60 | Enterprise Servers | IMPLEMENTED AND VALIDATED; first enterprise server segment |
+| VLAN70 | Windows Clients | IMPLEMENTED AND VALIDATED; first enterprise client segment |
 | VLAN80 | Linux | PROPOSED TARGET STATE; ID and scope require review |
 | VLAN90 | Monitoring/Test | PROPOSED TARGET STATE; combined trust boundary requires review |
 
