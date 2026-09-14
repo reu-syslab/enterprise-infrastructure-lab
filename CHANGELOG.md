@@ -2,6 +2,36 @@
 
 Record reviewed changes to the project and design separately from claims about infrastructure deployment.
 
+## [0.3.0] — 2026-09-14
+
+### Added
+
+- First manually built Windows Server domain controller.
+- First Active Directory forest and AD-integrated DNS service.
+- Minimal firewall paths required for DNS forwarding and controlled server outbound access.
+- External time synchronization for the first-domain PDC Emulator.
+
+### Validated
+
+- Domain Controller advertising and core AD services.
+- AD DNS authority and required DC/LDAP SRV discovery records.
+- `SYSVOL` and `NETLOGON` shares.
+- DNS diagnostics for both the domain controller and forest.
+- Global Catalog operation.
+- Placement of all five FSMO roles on the first domain controller.
+- DNS forwarding through the existing HomeLab resolver.
+- External HTTPS reachability required by the server.
+- External NTP reachability and successful Windows Time synchronization.
+
+### Fixed
+
+- Removed an unintended DHCP scope automatically associated with the enterprise server VLAN.
+- Corrected the initial Windows Server time-zone and NTP configuration.
+
+### Status
+
+The first domain controller and AD DNS implementation are operational and have passed initial health validation. Controlled DNS and time failure/recovery drills remain before M2 is closed. No Windows client has been joined to the domain yet.
+
 ## [0.2.0] — 2026-09-13
 
 ### Added

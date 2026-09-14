@@ -3,7 +3,7 @@
 **Last updated:** 2026-09-13  
 **Status:** Active  
 **Current execution phase:** Manual pilot / first vertical slice  
-**Next implementation target:** `DC01`
+**Next implementation target:** complete the M2 controlled failure drills for `DC01`
 
 ---
 
@@ -337,12 +337,11 @@ The enterprise VLANs currently provide only the minimum network foundation.
 
 ### Still open
 
-- final AD DNS namespace
-- Windows Server version for DC01
-- DC01 resource allocation
 - DHCP ownership / scope design
-- minimum outbound policy required for Windows installation and updates
-- DNS forwarding design
+- RSAT / administrative workstation placement
+- monitoring placement
+- backup / restore implementation
+- final automation ownership boundaries
 - RSAT / administrative workstation placement
 - monitoring placement
 - backup / restore implementation
@@ -365,8 +364,9 @@ Open decisions should be resolved just-in-time when they block the next vertical
 | VLAN60 ENT-SERVERS | DONE |
 | VLAN70 ENT-CLIENTS | DONE |
 | End-to-end VLAN validation | DONE |
-| DC01 | NEXT |
-| AD DS / DNS | NOT STARTED |
+| DC01 core build | DONE |
+| AD DS / DNS | DONE |
+| DC01 controlled failure drills | NEXT |
 | WIN11-01 | NOT STARTED |
 | OU / Users / Groups | NOT STARTED |
 | First GPO | NOT STARTED |
@@ -384,38 +384,45 @@ Open decisions should be resolved just-in-time when they block the next vertical
 
 ---
 
-## 14. NEXT ACTION — DC01
+## 14. NEXT ACTION — M2 controlled failure drills
 
-The next vertical slice begins with the first domain controller.
+The first domain controller has been built manually and passed the initial
+health-validation gate.
 
-### Proposed role
+### Completed M2 implementation
 
-`DC01`
+- Windows Server 2025 installed manually.
+- `DC01` deployed on VLAN60 / ENT-SERVERS.
+- Static server networking configured and gateway reachability validated.
+- First Active Directory forest created.
+- AD-integrated DNS installed and validated.
+- Required LDAP/DC discovery SRV records validated.
+- `SYSVOL` and `NETLOGON` shares validated.
+- Domain Controller advertising, services, Netlogon, SYSVOL and DNS tests passed.
+- All five FSMO roles are held by `DC01`, as expected for the first DC.
+- DNS forwarding through the existing HomeLab resolver was validated.
+- Minimal firewall access was implemented for required DNS and outbound services.
+- The PDC Emulator was configured to use an external NTP source and successful
+  synchronization was validated.
 
-- Windows Server
-- VLAN60 / ENT-SERVERS
-- static IP
-- AD DS
-- DNS
+Public documentation intentionally omits the real AD namespace, host addresses,
+resolver addresses and WAN details.
 
-### Next implementation sequence
+### Remaining M2 work
 
-1. Select Windows Server version.
-2. Define DC01 CPU, RAM and disk.
-3. Create the VM on Proxmox.
-4. Attach the VM to VLAN60.
-5. Install Windows Server.
-6. Configure static networking.
-7. Validate gateway connectivity.
-8. Define the minimum outbound access needed for updates/install.
-9. Accept the AD DNS namespace.
-10. Install AD DS and DNS.
-11. Create the first forest.
-12. Verify DNS and AD health.
+Execute and document the controlled failure scenarios already defined in the
+MASTER PLAN:
 
-After DC01 is healthy:
+1. stop the DNS service and observe the impact;
+2. introduce an incorrect DNS configuration and diagnose the symptoms;
+3. break time synchronization and record the diagnostic evidence;
+4. restore the known-good configuration after each test;
+5. run the final DC health checks again.
 
-`WIN11-01 → VLAN70 → domain join → OU → users/groups → first GPO`
+After those drills pass and recovery is verified, M2 can be closed and the next
+implementation slice becomes:
+
+`WIN11-01 → VLAN70 → AD DNS → first domain join`
 
 ---
 

@@ -23,7 +23,7 @@ The candidate reuses FortiGate routing/firewalling and RB5009/Proxmox trunks, su
 
 | Area | Intended outcome | OPEN DECISION / required design evidence |
 | --- | --- | --- |
-| AD and Windows Server | Domain identity and policy in an isolated lab | Namespace, versions/licensing, DC count/placement, capacity, time hierarchy and recovery; `DC01` is only a future discussion label |
+| AD and Windows Server | Domain identity and policy in an isolated lab | First Windows Server DC and AD-integrated DNS are implemented and initially validated; second-DC placement, recovery, client onboarding and later capacity decisions remain future work |
 | AD-integrated DNS | Domain-authoritative DNS with reviewed coexistence | Authority, delegation/forwarding, recursion restrictions, dynamic updates, resolver failure behavior and DHCP DNS settings |
 | Windows 11 clients | Reversible pilot domain join, later optional physical clients | First isolated virtual/test client, edition/licensing, OU placement, GPO scope and recovery; primary MGMT workstation excluded from first-client role |
 | Group Policy | Controlled policy testing and promotion | OU design, linking/filtering, rollback and separation of administrative access |

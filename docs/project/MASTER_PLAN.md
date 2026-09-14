@@ -325,7 +325,7 @@ Public documentation uses synthetic addressing.
 
 # 6. M2 — DC01 and first Active Directory forest
 
-**Status:** NEXT.
+**Status:** IMPLEMENTED AND VALIDATED; CONTROLLED FAILURE DRILLS PENDING.
 
 ## Objective
 
@@ -333,12 +333,12 @@ Build the first Windows Server domain controller manually.
 
 ## Design decisions required
 
-- [ ] Select Windows Server version.
-- [ ] Select VM resources.
-- [ ] Accept AD DNS namespace.
-- [ ] Define static server addressing.
-- [ ] Define temporary outbound update policy.
-- [ ] Define DNS forwarding behavior.
+- [x] Select Windows Server version.
+- [x] Select VM resources.
+- [x] Accept AD DNS namespace.
+- [x] Define static server addressing.
+- [x] Define temporary outbound update policy.
+- [x] Define DNS forwarding behavior.
 
 ## DC01 VM
 
@@ -353,34 +353,34 @@ Suggested starting point:
 
 ## Tasks
 
-- [ ] Create DC01 VM manually.
-- [ ] Install Windows Server.
+- [x] Create DC01 VM manually.
+- [x] Install Windows Server.
 - [ ] Install updates.
-- [ ] Rename host to `DC01`.
-- [ ] Configure static IPv4.
-- [ ] Verify gateway reachability.
-- [ ] Verify time.
+- [x] Rename host to `DC01`.
+- [x] Configure static IPv4.
+- [x] Verify gateway reachability.
+- [x] Verify time.
 - [ ] Verify external name resolution before promotion.
-- [ ] Install AD DS role.
-- [ ] Install DNS role.
-- [ ] Create first forest.
-- [ ] Reboot.
-- [ ] Verify domain services.
-- [ ] Verify DNS zone.
-- [ ] Verify `_msdcs`.
-- [ ] Verify SRV records.
-- [ ] Run `dcdiag`.
-- [ ] Run basic DNS diagnostics.
+- [x] Install AD DS role.
+- [x] Install DNS role.
+- [x] Create first forest.
+- [x] Reboot.
+- [x] Verify domain services.
+- [x] Verify DNS zone.
+- [x] Verify `_msdcs`.
+- [x] Verify SRV records.
+- [x] Run `dcdiag`.
+- [x] Run basic DNS diagnostics.
 - [ ] Document all manual actions.
 
 ## Validation
 
-- [ ] DC01 healthy.
-- [ ] AD DS services running.
-- [ ] DNS authoritative for AD namespace.
-- [ ] Required SRV records exist.
-- [ ] No critical `dcdiag` errors.
-- [ ] FortiGate gateway reachable.
+- [x] DC01 healthy.
+- [x] AD DS services running.
+- [x] DNS authoritative for AD namespace.
+- [x] Required SRV records exist.
+- [x] No critical `dcdiag` errors.
+- [x] FortiGate gateway reachable.
 
 ## Failure scenarios
 
@@ -2103,24 +2103,24 @@ At the end:
 
 # 35. Current NEXT ACTION
 
-The network foundation is validated.
+The network foundation and the manual DC01 build are validated.
 
 Proceed to:
 
-## `DC01`
+## `M2 controlled failure drills`
 
 Immediate sequence:
 
-1. select Windows Server version;
-2. define VM resources;
-3. create DC01;
-4. attach DC01 to VLAN60;
-5. install Windows Server;
-6. configure static networking;
-7. validate gateway and required outbound connectivity;
-8. accept AD DNS namespace;
-9. install AD DS + DNS;
-10. create the first forest;
-11. validate AD and DNS health.
+1. stop the DC DNS service and collect symptoms;
+2. restore DNS and verify recovery;
+3. introduce an incorrect DNS configuration and diagnose it;
+4. restore the known-good DNS configuration;
+5. deliberately disturb time synchronization and collect diagnostic evidence;
+6. restore the approved PDC time configuration;
+7. rerun DC, DNS, SYSVOL, Netlogon and time-health validation;
+8. update public-safe documentation and close M2.
 
-Do not begin Terraform/Ansible automation of DC01 until the manual build and troubleshooting behavior are understood.
+After the M2 recovery drills pass, proceed to `M3 — WIN11-01 and first domain join`.
+
+Do not begin Terraform/Ansible automation of DC01 until the manual build,
+failure behavior and recovery procedure are understood.

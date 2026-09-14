@@ -56,7 +56,7 @@ Live read-only CLI discovery was performed on Proxmox and FortiGate. No infrastr
 
 ## Current phase
 
-The documentation skeleton and initial network foundation are complete. VLAN60 ENT-SERVERS and VLAN70 ENT-CLIENTS are implemented and validated end-to-end. The next implementation slice is DC01 and the first Active Directory forest. Infrastructure automation remains deferred until the corresponding components have been built, tested and troubleshot manually.
+The documentation skeleton and initial network foundation are complete. VLAN60 ENT-SERVERS and VLAN70 ENT-CLIENTS are implemented and validated end-to-end. The first Windows Server domain controller and AD-integrated DNS have now been implemented manually and passed initial health validation. Controlled DC01 failure/recovery drills remain before M2 is closed. Infrastructure automation remains deferred until the corresponding components have been built, tested and troubleshot manually.
 
 ## Next actions
 
@@ -77,7 +77,7 @@ Track detailed work in [backlog.md](docs/project/backlog.md). Roles below identi
 | ID | ACCEPTED CONSTRAINT | Record |
 | --- | --- | --- |
 | A01 | Public reusable artifacts and synthetic examples; all real environment data kept externally | [ADR 0001](docs/adr/0001-public-private-boundary.md) |
-| A02 | Architecture review precedes each implementation slice; VLAN60/70 are implemented and validated, DC01 is the next manual slice, and automation remains deferred until manual understanding exists | [ADR 0002](docs/adr/0002-architecture-before-implementation.md) |
+| A02 | Architecture review precedes each implementation slice; VLAN60/70 and the manual DC01/AD DNS build are implemented and validated, controlled failure/recovery testing is next, and automation remains deferred until manual understanding exists | [ADR 0002](docs/adr/0002-architecture-before-implementation.md) |
 | A03 | New AD environment must be isolated from WAN-exposed DMZ/test/game services | Target-state security requirements |
 | A04 | Preserve old bridges, templates and alternate VLAN40 configuration until separately reviewed | Current-state debt register |
 | A05 | Plan AD DNS before changing BIND9/Unbound or existing clients' DNS | DNS design draft |
